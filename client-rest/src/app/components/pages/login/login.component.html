@@ -1,0 +1,55 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="Absolute-Center is-Responsive">
+
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
+
+         <form [formGroup]="form">
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+              <input type="text"
+                     formControlName="username"
+                     class="form-control"
+                     name='username'
+                     placeholder="username"/>
+            </div>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-unlock"></i></span>
+              <input type="password"
+                     formControlName="password"
+                     class="form-control"
+                     name='password'
+                     placeholder="password"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="button"
+                    class="btn btn-def btn-block btn-block"
+                    (click)="enviar()"
+                    [disabled]="!form.valid"
+                    >Login</button>
+          </div>
+
+          <small id="emailHelp" class="form-text text-muted"><p *ngIf="auth.showErrors">{{ auth.errorMessages }} </p> </small>
+
+          <div class="form-group text-center">
+            <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
