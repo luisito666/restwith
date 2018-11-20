@@ -21,12 +21,7 @@ class UserDetail(APIView):
     authentication_classes = (JWTAuthentication,)
 
     def get(self, args, **kwargs):
-        pk = self.kwargs['pk']
-        try:
-            user = CustomUser.objects.get(pk=pk)
-        except CustomUser.DoesNotExist:
-            return HttpResponse(status=404)
-        
+        user = self.request.user        
         serializer = UsersSerializer(user)
         return JsonResponse(serializer.data)
 

@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// Interceptor de peticiones http
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 // modulo de servicios
 import { ServicesModule } from './services/services.module';
@@ -47,7 +51,13 @@ import { SharedModule } from './components/shared/shared.module';
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

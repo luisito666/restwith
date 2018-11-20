@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-
-import { map } from 'rxjs/operators'; // Map
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+// importando interface de usuario
 import { Users } from '../interfaces/users.interface';
-import { headersToString } from 'selenium-webdriver/http';
 
 
 @Injectable()
@@ -48,7 +44,7 @@ export class LoginService {
   get_refresh(token: string) {
     const response = new Promise( (reject, resolve) => {
       const url = `${this.apiUrl}/token/refresh/`;
-      const body = JSON.stringify({'refresh': localStorage.getItem('jwt')});
+      const body = JSON.stringify({'refresh': token});
 
       this.http.post(url, body, this.get_headers() )
         .toPromise()
@@ -65,7 +61,7 @@ export class LoginService {
 
   get_refresh_(token: string) {
     const url = `${this.apiUrl}/token/refresh/`;
-    const body = JSON.stringify({'refresh': localStorage.getItem('jwt')});
+    const body = JSON.stringify({'refresh': token});
 
     return this.http.post(url, body, {
       headers: new HttpHeaders(),

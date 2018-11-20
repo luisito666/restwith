@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+// importando el router
 import { Router } from '@angular/router';
 
 // interface de usuario
 import { Users } from '../../../interfaces/users.interface';
 
 // importando servicio
-import { LoginService } from '../../../services/login.service';
 import { AuthService } from '../../../services/auth.service';
-
 
 // Importando modulo de formularios
 import { FormGroup, FormControl, Validators} from '@angular/forms';
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-    private service: LoginService,
     private auth: AuthService,
     private router: Router ) {
     this.form = new FormGroup({
@@ -53,11 +51,15 @@ export class LoginComponent implements OnInit {
   }
 
   enviar() {
-    this.credentials = this.form.value;
-    this.auth.set_session(this.credentials);
-    if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/home']);
-    }
+    this.auth.set_session(this.form.value)
+              .then( () => {
+                if (!this.auth.isAuthenticated()) {
+                  this.router.navigate(['/dashboard']);
+                } else {
+                  this.form.reset(this.credentials);
+                }
+              });
+    
   }
 
 }

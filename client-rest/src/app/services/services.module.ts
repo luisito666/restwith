@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 import { MainService } from './main.service';
 import { LoginService } from './login.service';
 import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { UserService } from './user.service';
+
 
 @NgModule({
   imports: [
@@ -22,7 +25,9 @@ export class ServicesModule {
       providers: [
         MainService,
         LoginService,
-        AuthService
+        AuthService,
+        AuthGuardService,
+        UserService
       ]
     };
   }
@@ -31,5 +36,7 @@ export class ServicesModule {
 export {
   MainService,
   LoginService,
-  AuthService
+  AuthService,
+  AuthGuardService,
+  UserService
 };

@@ -10,7 +10,6 @@ import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 
-
 @Injectable()
 export class AuthService {
 
@@ -24,12 +23,11 @@ export class AuthService {
     ) {}
 
   set_session(user: Users) {
-    this._login.get_token(user)
+    return this._login.get_token(user)
           .then(res => {
             if (res['access'] && res['refresh']) {
-              localStorage.setItem('jwt', JSON.stringify(res['access']));
-              localStorage.setItem('refresh', JSON.stringify(res['refresh']));
-              // this._rt.navigate(['/home']);
+              localStorage.setItem('jwt', res['access']);
+              localStorage.setItem('refresh', res['refresh']);
             }
           }).catch( err => {
             this.errorMessages = err.error['non_field_errors'][0];
@@ -47,10 +45,20 @@ export class AuthService {
     return this.refreshToken();
   }
 
+  get_token() {
+    return localStorage.getItem('jwt');
+  }
+
   isAuthenticated() {
     const token = localStorage.getItem('jwt');
     const isTokenExpired = this.decoder.isTokenExpired(token);
     return isTokenExpired;
+  }
+
+  logOut() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('refresh');
+    this._rt.navigate(['/home']);
   }
 
   getErrors() {
@@ -62,9 +70,7 @@ export class AuthService {
 
   refreshToken(): Observable<string> {
 
-    // append refresh token if you have one
     const refreshToken = localStorage.getItem('refresh');
-    const expiredToken = localStorage.getItem('jwt');
 
     return this._login.get_refresh_(refreshToken)
           .pipe(
