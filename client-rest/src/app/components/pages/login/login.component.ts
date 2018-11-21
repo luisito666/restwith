@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { Users } from '../../../interfaces/users.interface';
 
 // importando servicio
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 // Importando modulo de formularios
 import { FormGroup, FormControl, Validators} from '@angular/forms';

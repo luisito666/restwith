@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 // Servicios de la aplicacion
-import { MainService } from './main.service';
-import { LoginService } from './login.service';
-import { AuthService } from './auth.service';
-import { AuthGuardService } from './auth-guard.service';
-import { UserService } from './user.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 
+// Servicios que llamam metodos http
+import { UserService } from './http/user.service';
+import { LoginService } from './http/login.service';
 
 @NgModule({
   imports: [
@@ -23,7 +23,6 @@ export class ServicesModule {
     return {
       ngModule: ServicesModule,
       providers: [
-        MainService,
         LoginService,
         AuthService,
         AuthGuardService,
@@ -34,7 +33,6 @@ export class ServicesModule {
 }
 
 export {
-  MainService,
   LoginService,
   AuthService,
   AuthGuardService,

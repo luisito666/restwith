@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService } from './login.service';
-import { Users } from '../interfaces/users.interface';
-
+// Helper de autenticacion
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+// rxjs
 import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
+// servicio
+import { LoginService } from '../http/login.service';
+
+// interface
+import { Users } from '../../interfaces/users.interface';
 
 @Injectable()
 export class AuthService {
@@ -80,8 +84,6 @@ export class AuthService {
               localStorage.setItem('jwt', token);
               return token;
             }));
-
-
   }
 
 }

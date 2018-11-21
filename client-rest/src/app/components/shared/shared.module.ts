@@ -8,6 +8,8 @@ import { NavComponent } from './nav/nav.component';
 
 import { ProfileComponent } from './profile/profile.component';
 
+import { LoaderComponent } from './loader/loader.component';
+
 
 @NgModule({
   imports: [
@@ -17,11 +19,13 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   declarations: [
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoaderComponent
   ],
   exports: [
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoaderComponent
   ]
 })
 

@@ -6,7 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Interceptor de peticiones http
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { TokenInterceptor } from './services/token-interceptor';
 
 // modulo de servicios
 import { ServicesModule } from './services/services.module';
@@ -54,7 +54,7 @@ import { SharedModule } from './components/shared/shared.module';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: TokenInterceptor,
       multi: true
     }
   ],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/http/user.service';
 
 
 @Component({
@@ -9,6 +9,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
+  loading:boolean = true;
   user:any = {}
 
   constructor(private users: UserService) { }
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.users.get_user().then(res => {
       this.user = res;
+      this.loading = false;
     });
   }
 

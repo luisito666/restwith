@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // importando interface de usuario
-import { Users } from '../interfaces/users.interface';
+import { Users } from '../../interfaces/users.interface';
 
 
 @Injectable()

@@ -1,3 +1,8 @@
-<app-profile [user]="user"> </app-profile>
 
+<div *ngIf="!loading; else elseblock">
+    <app-profile [user]="user"> </app-profile>
+</div>
+<ng-template #elseblock>
+    <app-loader></app-loader>
+</ng-template>
 
