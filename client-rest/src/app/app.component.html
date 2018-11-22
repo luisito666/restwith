@@ -1,2 +1,7 @@
 <app-nav> </app-nav>
-<router-outlet></router-outlet>
+<div *ngIf="!loading; else elseblock">
+    <router-outlet></router-outlet>
+</div>
+<ng-template #elseblock>
+    <app-loader></app-loader>
+</ng-template>

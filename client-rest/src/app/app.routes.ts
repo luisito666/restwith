@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { SignupComponent } from './components/pages/signup/signup.component';
+
 
 import { AuthGuardService } from './services/auth/auth-guard.service';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { 
     path: 'dashboard', 
     component: DashboardComponent ,

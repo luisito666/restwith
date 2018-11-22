@@ -9,6 +9,9 @@ import { ServicesModule } from '../../services/services.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignupComponent } from './signup/signup.component';
+
+
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -23,12 +26,14 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignupComponent
   ],
   exports: [
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignupComponent
   ]
 })
 

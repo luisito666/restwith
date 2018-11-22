@@ -67,8 +67,6 @@ export class LoginService {
       headers: new HttpHeaders(),
       observe: 'response'
     });
-
-
   }
 
 }

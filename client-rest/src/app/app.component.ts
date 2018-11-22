@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  loading: boolean = true;
   title = 'client-rest';
+
+  constructor() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000)
+  }
+
 }

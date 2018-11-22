@@ -1,21 +1,18 @@
 <div class="container">
-
   <div class="row">
-
     <div class="Absolute-Center is-Responsive">
-
       <div class="col-sm-12 col-md-10 col-md-offset-1">
 
-         <form [formGroup]="form">
+        <form [formGroup]="form">
 
           <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
               <input type="text"
-                     formControlName="username"
-                     class="form-control"
-                     name='username'
-                     placeholder="username"/>
+                    formControlName="username"
+                    class="form-control"
+                    name='username'
+                    placeholder="username"/>
             </div>
           </div>
 
@@ -23,11 +20,22 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-unlock"></i></span>
               <input type="password"
-                     formControlName="password"
-                     class="form-control"
-                     name='password'
-                     placeholder="password"/>
+                    formControlName="password"
+                    class="form-control"
+                    name='password'
+                    placeholder="password"/>
             </div>
+          </div>
+
+          <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                <input type="text"
+                      formControlName="email"
+                      class="form-control"
+                      name='email'
+                      placeholder="email"/>
+              </div>
           </div>
 
           <div class="form-group">
@@ -38,18 +46,11 @@
                     >Login</button>
           </div>
 
-          <small id="emailHelp" class="form-text text-muted"><p *ngIf="auth.showErrors">{{ auth.errorMessages }} </p> </small>
-
-          <div class="form-group text-center">
-            <a [routerLink]="['/signup']">Register Here </a>&nbsp;|&nbsp;<a href="#">Support</a>
-          </div>
+          <small id="emailHelp" class="form-text text-muted"><p *ngIf="showErrors">{{ errorMessage }} </p> </small>
 
         </form>
 
       </div>
-
     </div>
-
   </div>
-
 </div>
