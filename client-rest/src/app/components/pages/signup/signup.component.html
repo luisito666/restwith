@@ -16,6 +16,8 @@
             </div>
           </div>
 
+          <span *ngIf="form.controls['username'].errors?.existe && form.controls['username'].touched">El nombre de usuario ya se encuentra registrado.</span>
+
           <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-unlock"></i></span>

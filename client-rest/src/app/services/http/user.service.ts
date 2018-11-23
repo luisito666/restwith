@@ -53,4 +53,16 @@ export class UserService {
     return httpOptions;
   }
 
+  verify_user(user) {
+    const response = new Promise( (resolve, reject) => {
+      const url = `${this.apiUrl}/users/verify/${user}`;
+      this.http.get(url)
+                .toPromise()
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+    });
+
+    return response
+  }
+
 }

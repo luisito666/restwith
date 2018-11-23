@@ -47,3 +47,13 @@ class UserNew(CreateAPIView):
             return Response(user.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(user.data, status=status.HTTP_201_CREATED)
 
+
+class ValidUser(APIView):
+
+    def get(self, *args, **kwargs):
+        user = self.kwargs['username']
+        try:
+            res = CustomUser.objects.get(username=user)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'users not exist'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'user': res.username})

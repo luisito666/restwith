@@ -11,14 +11,21 @@ import { UserService } from '../../../services/http/user.service';
 
 // Importando modulo de formularios
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styles: []
+  styles: [`
+    .ng-invalid.ng-touched:not(form) {
+      border: 1px solid red;
+    }
+    `]
 })
 export class SignupComponent implements OnInit {
 
+  data: any = ""
   showErrors: boolean = false;
   errorMessage: any = ""
   form: FormGroup;
@@ -36,7 +43,7 @@ export class SignupComponent implements OnInit {
       'username': new FormControl('',[
         Validators.required,
         Validators.minLength(4)
-      ]),
+      ], [this.validate_user.bind(this)]),
       'password': new FormControl('', [
         Validators.required,
         Validators.minLength(4)
@@ -48,6 +55,7 @@ export class SignupComponent implements OnInit {
     });
 
     this.form.reset(this.form_data);
+    console.log(this.form)
   }
 
   ngOnInit() {
@@ -72,6 +80,35 @@ export class SignupComponent implements OnInit {
     setTimeout( () => {
       this.showErrors = false;
     }, 5000);
+  }
+
+  validate_user(control: FormControl): Promise <any> | Observable <any>  {
+    const usuario = control.value.toLowerCase()
+    const promesa = new Promise ( (resolve, reject) => {
+      this.service_valid(usuario)
+      setTimeout(() => {
+        if(usuario === this.data) {
+          resolve( {existe: true} );
+        } else {
+          reject( null );
+        }
+      }, 2000)
+
+    });
+
+    return promesa;
+  }
+
+  service_valid(usuario: string) {
+    this._http.verify_user(usuario)
+                .then((res: any) => {
+                  if (res.user ){
+                    this.data = res.user
+                  }
+                })
+                .catch(err => {
+                  //console.log(err);
+                })
   }
 
 }
