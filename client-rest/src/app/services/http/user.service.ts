@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Signup } from '../../interfaces/signup.interface';
 
-
+import { map } from 'rxjs/operators'; // Map
 
 @Injectable()
 export class UserService {
@@ -54,15 +54,15 @@ export class UserService {
   }
 
   verify_user(user) {
-    const response = new Promise( (resolve, reject) => {
-      const url = `${this.apiUrl}/users/verify/${user}`;
-      this.http.get(url)
-                .toPromise()
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-    });
+    const url = `${this.apiUrl}/users/verify/${user}`;
+    return this.http.get(url)
+                    .pipe(
+                      map(res => {
+                        return res;
+                      })
+                    );
 
-    return response
+
   }
 
 }

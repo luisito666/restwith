@@ -17,11 +17,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styles: [`
-    .ng-invalid.ng-touched:not(form) {
-      border: 1px solid red;
-    }
-    `]
+  styles: []
 })
 export class SignupComponent implements OnInit {
 
@@ -55,7 +51,6 @@ export class SignupComponent implements OnInit {
     });
 
     this.form.reset(this.form_data);
-    console.log(this.form)
   }
 
   ngOnInit() {
@@ -90,7 +85,7 @@ export class SignupComponent implements OnInit {
         if(usuario === this.data) {
           resolve( {existe: true} );
         } else {
-          reject( null );
+          resolve( null );
         }
       }, 2000)
 
@@ -101,13 +96,10 @@ export class SignupComponent implements OnInit {
 
   service_valid(usuario: string) {
     this._http.verify_user(usuario)
-                .then((res: any) => {
+                .subscribe((res: any) => {
                   if (res.user ){
                     this.data = res.user
                   }
-                })
-                .catch(err => {
-                  //console.log(err);
                 })
   }
 
