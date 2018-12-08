@@ -24,7 +24,7 @@ export class UserService {
     return response;
   }
 
-  post_user(user: Signup){
+  post_user(user: Signup) {
     const response = new Promise((resolve, reject) => {
       const url = `${this.apiUrl}/users/new/`;
       const body = JSON.stringify( {
@@ -32,13 +32,13 @@ export class UserService {
         'password': user.password,
         'email': user.email
       });
-      
+
       this.http.post(url, body, this.get_headers())
               .toPromise()
               .then(res => resolve(res))
               .catch(err => reject(err));
 
-    })
+    });
 
     return response;
 
@@ -61,8 +61,6 @@ export class UserService {
                         return res;
                       })
                     );
-
-
   }
 
 }

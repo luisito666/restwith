@@ -21,15 +21,15 @@ import { Observable } from 'rxjs';
 })
 export class SignupComponent implements OnInit {
 
-  data: any = ""
-  showErrors: boolean = false;
-  errorMessage: any = ""
+  data: any = '';
+  showErrors = false;
+  errorMessage: any = '';
   form: FormGroup;
   form_data: Signup = {
-    username: null, 
+    username: null,
     password: null,
     email: null
-  }
+  };
 
   constructor(
     private router: Router,
@@ -67,7 +67,7 @@ export class SignupComponent implements OnInit {
                   console.log(err);
                   this.errorMessage = err.error.username[0];
                   this.Errors();
-                })
+                });
   }
 
   Errors() {
@@ -78,16 +78,16 @@ export class SignupComponent implements OnInit {
   }
 
   validate_user(control: FormControl): Promise <any> | Observable <any>  {
-    const usuario = control.value.toLowerCase()
+    const usuario = control.value.toLowerCase();
     const promesa = new Promise ( (resolve, reject) => {
-      this.service_valid(usuario)
+      this.service_valid(usuario);
       setTimeout(() => {
         if(usuario === this.data) {
           resolve( {existe: true} );
         } else {
           resolve( null );
         }
-      }, 2000)
+      }, 2000);
 
     });
 
@@ -97,10 +97,10 @@ export class SignupComponent implements OnInit {
   service_valid(usuario: string) {
     this._http.verify_user(usuario)
                 .subscribe((res: any) => {
-                  if (res.user ){
-                    this.data = res.user
+                  if ( res.user ) {
+                    this.data = res.user;
                   }
-                })
+                });
   }
 
 }

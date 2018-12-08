@@ -57,3 +57,26 @@ class ValidUser(APIView):
         except CustomUser.DoesNotExist:
             return Response({'error': 'users not exist'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'user': res.username})
+
+
+class UpdateUser(APIView):
+
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
+
+    def post(self, *args, **kwargs):
+        user = self.request.user
+        data = self.request.data
+        if 'first_name' in data:
+            user.first_name = data['first_name']
+        else:
+            return Response({'User': {'first_name': 'this field is not empty'}})
+
+        if 'last_name' in data:
+            user.last_name = data['last_name']
+        else:
+            return Response({'User': {'last_name': 'this field is not empty'}})
+
+        user.save()
+
+        return Response({'user': user.username, 'update': 'correct'})

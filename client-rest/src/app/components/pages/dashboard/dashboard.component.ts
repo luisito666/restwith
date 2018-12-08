@@ -9,8 +9,8 @@ import { UserService } from '../../../services/http/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  loading:boolean = true;
-  user:any = {}
+  loading = true;
+  user: any = {};
 
   constructor(private users: UserService) { }
 
